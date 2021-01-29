@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<script type="" id="change_script_type">
+  const test = () => {
+    console.log('test')
+  }
+  window.addEventListener( 'load', () => test() )
+</script>
+<body>
+  <button>click to add other script to the head</button>
+  <script>
+
+document.querySelector( 'button' ).addEventListener( 'click', () => {
+    let newSCript = document.createElement('script')
+        newSCript.src = './check.js'
+    document.head.appendChild( newSCript )
+  })
+  </script>
+  <!-- <script src="app2.js"></script> -->
+  <!-- <script src="app.js"></script> -->
+  <!-- <script src="./cookies.js"></script> -->
+</body>
+</html>
