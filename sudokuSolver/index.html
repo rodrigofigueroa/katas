@@ -8,6 +8,65 @@
 </head>
 <body>
   
-  <script src="./app.js"></script>
+  <!-- <script src="./app.js"></script> -->
+  <!-- <script src="./app.second.js"></script>   -->
+  <!-- <script src="./app.third.js"></script> -->
+  <!-- <script src="./app.sol.js"></script> -->
+  <script>
+    var data = [
+        [5, 3, 0, 0, 7, 0, 0, 0, 0],
+        [6, 0, 0, 1, 9, 5, 0, 0, 0],
+        [0, 9, 8, 0, 0, 0, 0, 6, 0],
+        [8, 0, 0, 0, 6, 0, 0, 0, 3],
+        [4, 0, 0, 8, 0, 3, 0, 0, 1],
+        [7, 0, 0, 0, 2, 0, 0, 0, 6],
+        [0, 6, 0, 0, 0, 0, 2, 8, 0],
+        [0, 0, 0, 4, 1, 9, 0, 0, 5],
+        [0, 0, 0, 0, 8, 0, 0, 7, 9]
+      ];
+    
+    sudoku( data )
+    function valid( a, row, col, sel ){ 
+      
+      for( let num = 0; num < 9; num++ ){
+        const m = 3 * Math.floor( row / 3 ) + Math.floor( num / 3 )
+        const n = 3 * Math.floor( col / 3 ) + num % 3
+        if( a[ row ][ num ]  === sel || a[ num ][ col ] === sel || a[ m ][ n ] === sel){
+          return false
+        }
+      }
+      return true
+    }
+    function checkData( data ){
+      for( let row = 0; row < 9; row++ ){
+        for(let col = 0; col < 9; col++){
+
+          if( data[ row ][ col ] === 0 ){
+
+            for( let n = 1; n <= 9; n++ ){
+
+              if( valid( data, row , col, n ) ){
+                data[ row ][ col ] = n
+                if( sudoku( data ) ){
+                  return true
+                }else{
+                  data[ row ][ col ] = 0
+                }
+              }
+              
+            }
+            return false
+          }
+
+        }
+      }
+      return true
+    }
+    function sudoku( data ){
+      if( checkData( data ) ){
+        return data
+      }
+    }
+  </script>
 </body>
 </html>
